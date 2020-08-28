@@ -92,6 +92,16 @@ exports.update = (req, res) => {
     })
 }
 
+exports.getAll = (req, res) => {
+    const first = new RegExp(`.*${req.query.searchBy}.*`, 'i')
+    console.log(req.query.searchBy)
+    User.find({ firstName: first }).then(users => {
+        res.send(users)
+    }).catch(error => {
+        res.status(500).send({ message: error.message || 'Error de conexion con el servidor' })
+    })
+}
+
 exports.login = (req, res) => {
     User.findOne({ email: req.body.email }, (error, dataUser) => {
 
