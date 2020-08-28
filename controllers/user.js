@@ -97,6 +97,7 @@ exports.getAll = (req, res) => {
     if (req.query.searchBy != undefined || req.query.searchB != '') {
         search = { firstName: new RegExp(`.*${req.query.searchBy}.*`, 'i') }
     }
+    console.log('search --> ', search)
     User.find(search).then(users => {
         res.send(users)
     }).catch(error => {
