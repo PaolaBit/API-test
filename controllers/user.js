@@ -93,9 +93,11 @@ exports.update = (req, res) => {
 }
 
 exports.getAll = (req, res) => {
+    console.log('Si llegó')
     const first = new RegExp(`.*${req.query.searchBy}.*`, 'i')
     console.log(req.query.searchBy)
     User.find({ firstName: first }).then(users => {
+        console.log('users --> ', users)
         res.send(users)
     }).catch(error => {
         res.status(500).send({ message: error.message || 'Error de conexion con el servidor' })
