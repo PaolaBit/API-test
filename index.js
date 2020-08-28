@@ -5,7 +5,7 @@ const { connectToDatabase } = require('./connectiondb')
 
 
 const app = express() //aqui se inicializa express para poder usar todos los metodos que este framework nos da
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -19,12 +19,12 @@ const purchase = require('./routes/purchase')
 const contactUs = require('./routes/contactUs')
 const user = require('./routes/user')
 
-app.use ('/api', destinations)
+app.use('/api', destinations)
 app.use('/api', purchase)
 app.use('/api', contactUs)
 app.use('/api', user)
-app.use('/api', cities) 
+app.use('/api', cities)
 
-app.listen(port, function(){
+app.listen(port, function() {
     console.log('Servidor funcionando')
 })
